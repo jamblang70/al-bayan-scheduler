@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Tambahan buat scrollbar biar makin cakep */
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Nunito Sans", "ui-sans-serif";
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
