@@ -1,16 +1,75 @@
-# React + Vite
+# Al-Bayan Scheduler
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi jadwal mingguan kelas berbasis React + Vite untuk menampilkan kegiatan belajar per hari, dengan tampilan mobile-friendly dan dukungan update data via JSON.
 
-Currently, two official plugins are available:
+## Fungsi Aplikasi
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Menampilkan jadwal pelajaran per hari (`Senin` sampai `Jumat`).
+- Menandai sesi tertentu sebagai highlight (mis. agenda penting).
+- Menyimpan perubahan jadwal ke `localStorage` agar data tetap ada saat browser di-refresh.
+- Memudahkan update jadwal mingguan lewat proses import JSON.
 
-## React Compiler
+## Fitur Utama
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Navigasi hari dengan tab horizontal.
+- Kartu jadwal per sesi (jam + nama mapel + ikon kategori).
+- Ringkasan agenda khusus untuk `Upacara` (Senin), `Pramuka` (Rabu), dan `Renang` (Kamis).
+- Tombol salin data jadwal aktif ke clipboard (format JSON).
+- Tombol reset jadwal kembali ke default.
+- Tombol import jadwal baru dari JSON.
+- Modal import JSON dengan validasi format dasar (`pekan` dan `hari` wajib ada).
+- Tombol WhatsApp floating untuk kontak cepat.
 
-## Expanding the ESLint configuration
+## Struktur Data JSON
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Format minimal yang diterima saat import:
+
+```json
+{
+  "pekan": "XI (5 - 9 April 2026)",
+  "hari": {
+    "Senin": [
+      {
+        "jam": "07:00 - 07:10",
+        "mapel": "Ikrar & Shalat Dhuha",
+        "type": "faith"
+      }
+    ]
+  }
+}
+```
+
+Catatan:
+- Properti `highlight` bersifat opsional (`true/false`).
+- Properti `special` opsional untuk sesi khusus seperti `pramuka` atau `renang`.
+
+## Teknologi
+
+- React
+- Vite
+- Tailwind CSS v4
+- Lucide React (ikon)
+
+## Menjalankan Project
+
+```bash
+npm install
+npm run dev
+```
+
+Build production:
+
+```bash
+npm run build
+```
+
+Preview build:
+
+```bash
+npm run preview
+```
+
+## Penyimpanan Lokal
+
+- Key `localStorage`: `al_bayan_schedule_v3`
+- Reset default akan mengembalikan data ke bawaan aplikasi (Pekan XI, 5-9 April 2026).
